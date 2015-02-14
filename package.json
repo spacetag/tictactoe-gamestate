@@ -1,0 +1,14 @@
+{
+  "name": "tictacoe",
+  "version": "1.0.0",
+  "description": "This contains the logic for the game tic tac toe.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tape": "^3.5.0"
+  }
+}
