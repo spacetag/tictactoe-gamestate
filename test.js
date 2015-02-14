@@ -51,6 +51,29 @@ test('test for seeing whose turn it is', function (t) {
 	t.end()
 })
 
-// test('test for checking winner', function(t) {
+test('test for checking horizontal winner', function(t) {
+	var newGameBoard = ['O', 'O', 'O', null, null, null, null, null, null]
 
-// })
+	var whoWon = tictactoe.whoWon(newGameBoard)
+	t.equal(whoWon, 'O')
+
+	t.end()
+})
+
+test('test for checking vertical winner', function(t) {
+	var newGameBoard = ['O', null, null, 'O', null, null, 'O', null, null]
+
+	var whoWon = tictactoe.whoWon(newGameBoard)
+	t.equal(whoWon, 'O')
+
+	t.end()
+})
+
+test('test for checking diagonal winner', function(t) {
+	var newGameBoard = ['O', null, null, null, 'O', null, null, null, 'O']
+
+	var whoWon = tictactoe.whoWon(newGameBoard)
+	t.equal(whoWon, 'O')
+
+	t.end()
+})

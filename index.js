@@ -1,7 +1,8 @@
 module.exports = {
 	getNewGame: getNewGame,
 	claimSquare: claimSquare,
-	whoseTurnIsIt: whoseTurnIsIt
+	whoseTurnIsIt: whoseTurnIsIt,
+	whoWon: whoWon
 }
 
 var firstPlayer = 'X'
@@ -42,5 +43,34 @@ function somebodyHasWon(gameState)
 
 function whoWon(gameState)
 {
+	var testResults = [
+		checkRowForWinner(gameState, 0),
+		checkRowForWinner(gameState, 1),
+		checkRowForWinner(gameState, 2),
+		checkColumnForWinner(gameState, 0),
+		checkColumnForWinner(gameState, 1),
+		checkColumnForWinner(gameState, 2)
+	]
 
+	return testResults.reduce(function(winner, currentResult) {
+		return winner || currentResult
+	})
+}
+
+function allTheSame(tokenSoFar, currentSquare) {
+	return tokenSoFar === currentSquare ? tokenSoFar : null
+}
+
+function checkRowForWinner(gameState, row)
+{
+	var startOfRow = row * 3
+	return gameState.slice(startOfRow, startOfRow + 3).reduce(allTheSame)
+}
+
+function checkColumnForWinner(gameState, columnNumber)
+{
+	var tokensInColumn = gameState.filter(function(token, index) {
+		return index % 3 === columnNumber
+	})
+	return tokensInColumn.reduce(allTheSame);
 }
